@@ -20,7 +20,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     // String _url = "https://api.whatsapp.com/send/?phone=91$mobno&text&app_absent=0";
     // String _url = "https://flutter.io";
     // void _launchURL() async =>
@@ -69,11 +68,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       });
                     },
                     validator: (value) {
-                      if (value == null || value.isEmpty) {
+                      String patttern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+                      RegExp regExp = new RegExp(patttern);
+                      if (value == null || value.isEmpty)
                         return 'Please enter some text';
-                      }
-                      else if(value.length>10 || value.length<10)
-                        return 'Mobile Number should be equal to 10';
+
+                      else if (!regExp.hasMatch(value))
+                        return 'Please enter valid mobile number';
 
                       return null;
                     },
