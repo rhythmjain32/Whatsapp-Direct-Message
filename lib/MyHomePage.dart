@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -24,73 +25,114 @@ class _MyHomePageState extends State<MyHomePage> {
     // String _url = "https://flutter.io";
     // void _launchURL() async =>
     //     await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: Text(widget.title),
-      ),
-      body: Container(
-        padding: EdgeInsets.fromLTRB(20.0, 50.0, 20.0, 0.0),
-        child: Center(
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                TextFormField(
-                  onChanged: (value){
-                    setState(() {
-                      mobno = value;
-                      // print(mobno);
-                    });
-                  },
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    else if(value.length>10 || value.length<10)
-                      return 'Mobile Number should be equal to 10';
+    return GestureDetector(
+      onTap: (){
+        FocusManager.instance.primaryFocus!.unfocus();
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0.8,
+          backgroundColor: Color(0xfff1f6f7),
+          title: Text(
+            widget.title,
+            style: TextStyle(
+                color: Color(0xff263734),
+              fontSize: 25.0,
+            ),
+          ),
+        ),
+        // backgroundColor: Color(0xffF1F6F7),
+        backgroundColor: Color(0xffe0f2f1),
+        body: Container(
 
-                    return null;
-                  },
-
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.green),
-                      borderRadius: BorderRadius.circular(25.0),
+          padding: EdgeInsets.fromLTRB(20.0, 50.0, 20.0, 0.0),
+          child: Center(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  TextFormField(
+                    cursorColor: Colors.white,
+                    textAlign: TextAlign.left,
+                    maxLength: 10,
+                    style: TextStyle(
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.w500,
+                        // color: Colors.white,
+                        color: Color(0xff263734),
                     ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    hintText: 'Enter the number here',
-                    prefixIcon: Icon(Icons.person, color: Colors.black),
-                    contentPadding: EdgeInsets.all(20.0),
-                  ),
-                ),
-                SizedBox(height: 20.0,),
-                ElevatedButton.icon(
-                  onPressed:(){
-                    if(_formKey.currentState!.validate()){
-                      print('Validated');
-                      print(mobno);
-                      // _launchURL();//dont uncomment
-                      // launch('https://api.whatsapp.com/send/?phone=91$mobno&text&app_absent=0');
-                    }
+                    onChanged: (value){
+                      setState(() {
+                        mobno = value;
+                        // print(mobno);
+                      });
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                      else if(value.length>10 || value.length<10)
+                        return 'Mobile Number should be equal to 10';
 
-                  },
-                  icon: Icon(
-                    Icons.message,
-                    color: Colors.white,
-                    size: 24.0,
-                  ),
-                  style: ElevatedButton.styleFrom(
-                        primary: Colors.green, // background
-                        onPrimary: Colors.white, // foreground
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xff91c5bc).withOpacity(0.6),
+                      // disabledBorder: OutlineInputBorder(
+                      //   borderSide: BorderSide(color: Colors.red),
+                      // ),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
                       ),
-                  label: Text('Message'),
-                ),
-              ],
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xff4db6ac), width: 3.0),
+                        borderRadius: BorderRadius.only(topRight: Radius.circular(25.0), bottomLeft: Radius.circular(25.0)),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xffef9a9a), width: 3.0),
+                        borderRadius: BorderRadius.only(topRight: Radius.circular(25.0), bottomLeft: Radius.circular(25.0)),
+                      ),
+                      hintText: 'Enter the number here',
+                      hintStyle: TextStyle(fontSize: 20.0, color: Color(0xff263734).withOpacity(0.5)),
+                      prefixIcon: Padding(
+                        padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+                          child: Icon(Icons.person, color: Colors.black,)
+                      ),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 20.0),
+                    ),
+                  ),
+                  SizedBox(height: 20.0,),
+                  ElevatedButton.icon(
+                    onPressed:(){
+                      FocusManager.instance.primaryFocus!.unfocus();
+                      if(_formKey.currentState!.validate()){
+                        print('Validated');
+                        // print(mobno);
+                        // _launchURL();//don't uncomment
+                        launch('https://api.whatsapp.com/send/?phone=91$mobno&text&app_absent=0');
+                      }
+
+                    },
+                    icon: Icon(
+                      Icons.navigation,
+                      color: Colors.white,
+                      size: 24.0,
+                    ),
+                    style: ElevatedButton.styleFrom(
+                          primary: Color(0xff65A69B), // background
+                          onPrimary: Colors.white, // foreground
+                      padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 15.0),
+                        ),
+                    label: Text('Message',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
