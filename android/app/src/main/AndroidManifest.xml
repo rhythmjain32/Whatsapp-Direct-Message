@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aristo.whatsapphack">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="whatsapphack"
+        android:label="WhatsApp Help(beta)"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
