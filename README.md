@@ -1,6 +1,7 @@
 # whatsapphack
 
-A new Flutter project.
+A Flutter project for android devices which helps to message anonymous contacts directly on whatsapp.
+Currently we cannot message anyone whose contact is not saved in our device but using this app will help us to directly message them with their phone number without saving them.
 
 ## Getting Started
 
